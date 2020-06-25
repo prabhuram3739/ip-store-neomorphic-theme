@@ -1,0 +1,149 @@
+<!--Intel Model Store Form-->
+<form class="mbr-form model-store-form" data-form-title="Model store Form" id="model-store-form">
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="platform" role="tabpanel" aria-labelledby="platform-tab">
+      <div class="row row-sm-offset">
+        <!--<div>
+          <input type="text" #name>
+  <br>
+          <input type="button" value="Call First Component Function" (click)="firstComponentFunction()">
+        </div>-->
+        <div class="col-md-3 col-sm-12 detail-multi-horizontal" data-for="">
+          <div class="content detailPageContainer scrollbar" id="filterDetail">
+            <span class="shareableLink" (click)="copyInputMessage(urlPlatform)">URL to platform (Click to copy to the clipboard)</span>
+            <textarea #urlPlatform id="urlPlatform" class="shareableLink" (click)="copyInputMessage(urlPlatform)">{{url}}</textarea>
+            <!--<button (click)="copyInputMessage(urlPlatform)">Copy</button> -->
+            <label class="clipBoardConfirmationMessage" *ngIf="msgHideAndShow">{{textMessage}}</label>
+            <div name="platforms" class="col-12 platformsContainer">
+              <div class="col-4 platformImageContainer">
+                <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-Platform-256.png" class="platformImg" alt="platforms">
+              </div>
+                <div class="col-6 platformTitle">
+                  <p class="platformTitleName">{{platformName | uppercase}}</p>
+                </div>
+                <div class="col-2 subsribeBtnContainer"><button type="button" class="btn btn-info subscribeBtn">Subscribe</button></div>
+            </div>
+            <span class="totalReleases">Total Number of Version: {{ releaseNames.length }}</span>
+            <div class="releasesContainer" *ngIf="releaseNames.length > 0">
+              <h4 class="releaseVersionsTitle">Release Versions </h4>
+              <!--<a class="togglePlus" data-toggle="collapse" href="#releaseVersionContents" aria-expanded="true" aria-controls="releaseVersionContents" (click)="dispMinus(releaseContents)">
+                <i [ngClass]="{'intelicon-plus-outlined': !showIcon, 'intelicon-minus-outlined': showIcon}" title="Expand/Collapse"></i>
+              </a>-->
+              <ul class="collapse show list-group list-group-flush" id="releaseVersionContents">
+                <div>
+                  <ul #releaseContents class="releaseContents">
+                    <li class="list-group-item releaseNameLabel col-12" *ngFor="let platformDetail of releaseNames; index as i" [ngClass]="{'addBackgroundColor': isActive(platformDetail)}" (click)="getPlatformDetail(platformDetail)">
+                      <!--<input [checked]=isSelected(platformDetail.releaseName) (change)="onChange(platformDetail.releaseName)" #f type="checkbox" [value]="platformDetail.releaseName" name="releaseName">-->
+                      <a (click)="onChange(platformName, platformDetail.releaseName)">
+                        <span class="releaseNameChkBoxText">{{platformDetail.releaseName}}</span>
+                      </a>
+                      <hr/>
+                    </li>
+                  </ul>
+              </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      <div id="platformReleasePanel" class="col-md-9 col-sm-12 detail-multi-horizontal" data-for="">
+        <div class="content detailPageContainer scrollbar" id="platformDetail">
+          <h2 class="headingReleaseTitle">Platform Release</h2>
+          <!--<ul class="platformDetailList">
+            <li class="shareableLink"><b>Shareable Link:</b> {{url}}
+              <img class="product-shot" itemprop="image" data-view="top" data-model="" src="https://assets.logitech.com/assets/64908/26/z150-clear-stereo-sound-speakers.png" alt="Z150 Stereo Speakers">
+            </li>-->
+            <ul class="platformReleseList" *ngIf="releaseNames.length > 0">
+            <li *ngFor="let platformDetail of releaseNamesUnfiltered; index as i">
+              <!--<b>Platform Release:</b><p>{{platformDetail.releaseName}}</p>
+              <b>Sharable Link(Release):</b><p>{{platformDetail.release_sharable_link}}</p>
+              <b>Platform Name:</b><p >{{platformDetail.platform}}</p>
+              <b>Artifactory Directory:</b><p>Go to <a class="shareableLink" href="{{platformDetail.release_artifactory_directory}}" target="_blank">Artifactory Directory</a></p>-->
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Platform Release</th>
+                      <th scope="col">Sharable Link(Release)</th>
+                      <th scope="col">Platform Name</th>
+                      <th scope="col">Artifactory Directory</th>
+                    </tr>
+                  </thead>
+                  <tbody id="packageContents">
+                    <tr>
+                      <td>{{platformDetail.releaseName}}</td>
+                      <td><a class="shareableLink" href="{{sharableReleaseVersionLink}}" target="_blank">Sharable Release Version Link</a></td>
+                      <td>{{platformDetail.platform}}</td>
+                      <td><a class="shareableLink" href="{{platformDetail.release_artifactory_directory}}" target="_blank">Artifactory Directory</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <b>Packages In This Release:</b><br/>
+              <div class="margin-top-table table-responsive-sm">
+                <table id="pacakgeTableContents" class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <!--<th scope="col">Package Number</th>
+                      <th scope="col">Version</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Download Link</th>-->
+                      <th *ngFor="let head of packageColumnHeadElements; let i = index" aria-controls="pacakgeTableContents" scope="col" [mdbTableSort]="platformDetail.packages_details" [sortBy]="packageColumnHeadElements[i]">{{head.replace('_',' ') | titlecase}} <i class="intelicon-sort-by-alpha" title="sort"></i></th>
+                    </tr>
+                  </thead>
+                  <tbody id="packageContents">
+                    <tr *ngFor="let packageLink of platformDetail.packages_details; index as j">
+                      <td>{{packageLink.package_number}}</td>
+                      <td>{{packageLink.package_version}}</td>
+                      <td>{{packageLink.package_name}}</td>
+                      <td><a href="{{packageLink.download_link}}" download="{{packageLink.download_link}}}"> Download </a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <b>Software Loads Tested:</b><br/>
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Software</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="packageSoftwareContents">
+                    <!--<tr *ngFor="let package_software_load of platformDetail.software_loads_tested; index as k">
+                      <td>{{package_software_load.software}}</td>
+                      <td>{{package_software_load.status}}</td>
+                    </tr>-->
+                  </tbody>
+                </table>
+              </div>
+              <b>Platform Contents:</b><br/>
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Model</th>
+                      <th scope="col">Version</th>
+                    </tr>
+                  </thead>
+                  <tbody id="packagePlatformContents">
+                    <!--<tr *ngFor="let package_platform_contents of platformDetail.platform_contents; index as l">
+                      <td>{{package_platform_contents.model}}</td>
+                      <td>{{package_platform_contents.version}}</td>
+                    </tr>-->
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ul>
+          <div class="noReleaseInfo" *ngIf="releaseNames.length === 0">
+            <p> Sorry, no release information available for this platform</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</form>

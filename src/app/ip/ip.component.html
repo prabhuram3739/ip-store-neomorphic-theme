@@ -1,0 +1,217 @@
+<!--Intel Model Store Form-->
+<form class="mbr-form model-store-form" data-form-title="Model store Form" id="model-store-form">
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="platform" role="tabpanel" aria-labelledby="platform-tab">
+      <div class="row row-sm-offset">
+        <!--<div>
+          <input type="text" #name>
+  <br>
+          <input type="button" value="Call First Component Function" (click)="firstComponentFunction()">
+        </div>-->
+        <div class="col-md-3 col-sm-12 detail-multi-horizontal" data-for="">
+          <div class="content detailPageContainer scrollbar" id="filterDetail">
+            <span class="shareableLink" (click)="copyInputMessage(urlIP)">URL to IP (Click to copy to the clipboard)</span>
+            <textarea #urlIP id="urlIP" class="shareableLink" (click)="copyInputMessage(urlIP)">{{url}}</textarea>
+            <!--<button (click)="copyInputMessage(urlPlatform)">Copy</button> -->
+            <label class="clipBoardConfirmationMessage" *ngIf="msgHideAndShow">{{textMessage}}</label>
+            <div name="platforms" class="col-12 platformsContainer">
+              <div class="col-4 platformImageContainer">
+                <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-IP-block-256.png" class="platformImg" alt="platforms">
+              </div>
+                <div class="col-6 platformTitle">
+                  <p class="platformTitleName">{{ipName | uppercase}}</p>
+                </div>
+                <div class="col-2 subsribeBtnContainer"><button type="button" class="btn btn-info subscribeBtn">Subscribe</button></div>
+            </div>
+            <span class="totalReleases">Total Number of Build: {{ releaseNames.length }}</span>
+            <div class="releasesContainer" *ngIf="releaseNames.length > 0">
+              <h4 class="releaseVersionsTitle">IP Build Time</h4>
+              <!--<a class="togglePlus" data-toggle="collapse" href="#releaseVersionContents" aria-expanded="true" aria-controls="releaseVersionContents" (click)="dispMinus(releaseContents)">
+                <i [ngClass]="{'intelicon-plus-outlined': !showIcon, 'intelicon-minus-outlined': showIcon}" title="Expand/Collapse"></i>
+              </a>-->
+              <ul class="collapse show list-group list-group-flush" id="releaseVersionContents">
+                <div>
+                  <ul #releaseContents class="releaseContents">
+                    <li class="list-group-item releaseNameLabel col-12" *ngFor="let ipDetail of releaseNames; index as i" [ngClass]="{'addBackgroundColor': isActive(ipDetail)}" (click)="getIPDetail(ipDetail)">
+                      <a (click)="onChange(ipName, ipDetail.build_time)">
+                        <span class="releaseNameChkBoxText">{{ipDetail.build_time}}</span>
+                      </a>
+                      <hr/>
+                    </li>
+                  </ul>
+              </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      <div id="platformReleasePanel" class="col-md-9 col-sm-12 detail-multi-horizontal" data-for="">
+        <div class="content detailPageContainer scrollbar" id="platformDetail">
+          <h2 class="headingReleaseTitle">IP Release</h2>
+          <!--<ul class="platformDetailList">
+            <li class="shareableLink"><b>Shareable Link:</b> {{url}}
+              <img class="product-shot" itemprop="image" data-view="top" data-model="" src="https://assets.logitech.com/assets/64908/26/z150-clear-stereo-sound-speakers.png" alt="Z150 Stereo Speakers">
+            </li>-->
+            <ul class="platformReleseList" *ngIf="releaseNames.length > 0">
+            <li *ngFor="let ipDetail of releaseNamesUnfiltered; index as i">
+              <!--<div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">IP Build ID</th>
+                      <th scope="col">IP Name</th>
+                      <th scope="col">IP Build Time</th>
+                      <th scope="col">IP Phys Vendor</th>
+                      <th scope="col">Implementation Language</th>
+                    </tr>
+                  </thead>
+                  <tbody id="packageContents">
+                    <tr>
+                      <td>{{ipDetail.build_id}}</td>
+                      <td>{{ipDetail.ip}}</td>
+                      <td>{{ipDetail.build_time}}</td>
+                      <td>{{ipDetail.phys_vendor}}</td>
+                      <td>{{ipDetail.implementation_languages}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>-->
+
+              <!--Model Details Table-->
+              <!--<b>Model Details</b>
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col" style="width: 10%;">Model Abstraction</th>
+                      <th scope="col" style="width: 10%;">Model Description Short</th>
+                      <th scope="col" style="width: 10%;">Model Description Long</th>
+                      <th scope="col" style="width: 25%;">Model Specs</th>
+                    </tr>
+                  </thead>
+                  <tbody id="packageContents">
+                    <tr>
+                      <td>{{ipDetail.model_abstraction}}</td>
+                      <td>{{ipDetail.model_desc_short}}</td>
+                      <td>{{ipDetail.model_desc_long}}</td>
+                      <td>{{ipDetail.model_specs}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>-->
+
+              <!--<b>Package In This Release:</b><br/>
+              <div class="margin-top-table table-responsive-sm">
+                <table id="pacakgeTableContents" class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Package Number</th>
+                      <th scope="col">Package Version</th>
+                      <th scope="col">Package Name</th>
+                      <th scope="col">Package URL</th>
+                      <!--<th *ngFor="let head of packageColumnHeadElements; let i = index" aria-controls="pacakgeTableContents" scope="col" [mdbTableSort]="ipDetail.package_details" [sortBy]="packageColumnHeadElements[i]">{{head.replace('_',' ') | titlecase}} <i class="intelicon-sort-by-alpha" title="sort"></i></th>-->
+                    <!--</tr>
+                  </thead>
+                  <tbody id="packageContents">
+                    <tr *ngFor="let packageLink of ipDetail.package_details; index as j">
+                      <td>{{packageLink.package_number}}</td>
+                      <td>{{packageLink.package_version}}</td>
+                      <td>{{packageLink.package_name}}</td>
+                      <td>{{packageLink.package_url}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>-->
+              <!--<b>Model and Phys Functionality:</b><br/>
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped">
+                  <thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Model Register Source</th>
+                      <th scope="col">Model Source Location</th>
+                      <th scope="col">Phys Functionality</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ipPhysFunctionalityContents">
+                    <tr *ngFor="let ipDetailPhysFunctionality of ipDetail.phys_functionality.split(); index as k">
+                      <td>{{ipDetail.model_register_source}}</td>
+                      <td>{{ipDetail.model_source_location}}</td>
+                      <td>{{ipDetailPhysFunctionality}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>--->
+              <span class="shareableLink">Manifest URL:</span>
+              <!--Single Table-->
+              <div class="margin-top-table table-responsive-sm">
+                <table class="table table-striped table-bordered">
+                  <!--<thead class="thead-dark panel-heading">
+                    <tr>
+                      <th scope="col">Parameters</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>-->
+                  <tbody id="packageContents">
+                    <tr>
+                      <td class="ipParameter">IP Build ID</td><td>{{ipDetail.build_id}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">IP Name</td><td>{{ipDetail.ip}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">IP Build Time</td><td>{{ipDetail.build_time}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">IP Phys Vendor</td><td>{{ipDetail.phys_vendor}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">IP Implementation Language</td><td>{{ipDetail.implementation_languages}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Abstraction</td><td>{{ipDetail.model_abstraction}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Description Short</td><td>{{ipDetail.model_desc_short}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Description Long</td><td>{{ipDetail.model_desc_long}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Specs</td><td>{{ipDetail.model_specs}}</td>
+                    </tr>
+                    <tr *ngFor="let packageLink of ipDetail.package_details; index as j">
+                      <td class="ipParameter">Package Number</td><td>{{packageLink.package_number}}</td>
+                    </tr>
+                    <tr *ngFor="let packageLink of ipDetail.package_details; index as j">
+                      <td class="ipParameter">Package Version</td><td>{{packageLink.package_version}}</td>
+                    </tr>
+                    <tr *ngFor="let packageLink of ipDetail.package_details; index as j">
+                      <td class="ipParameter">Package Name</td><td>{{packageLink.package_name}}</td>
+                    </tr>
+                    <tr *ngFor="let packageLink of ipDetail.package_details; index as j">
+                      <td class="ipParameter">Package URL</td><td>{{packageLink.package_url}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Register Source</td><td>{{ipDetail.model_register_source}}</td>
+                    </tr>
+                    <tr>
+                      <td class="ipParameter">Model Source Location</td><td>{{ipDetail.model_source_location}}</td>
+                    </tr>
+                    <tr *ngFor="let ipDetailPhysFunctionality of ipDetail.phys_functionality.split(); index as k">
+                      <td class="ipParameter">Phys Functionality</td><td>{{ipDetailPhysFunctionality}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--Single Table End-->
+            </li>
+          </ul>
+          <div class="noReleaseInfo" *ngIf="releaseNames.length === 0">
+            <p> Sorry, no release information available for this IP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</form>

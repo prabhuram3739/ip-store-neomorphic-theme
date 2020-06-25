@@ -1,0 +1,271 @@
+<!--Intel Model Store Form-->
+<form class="mbr-form model-store-form" data-form-title="Model store Form" id="model-store-form">
+  <div class="row topSearchBox">
+    <div class="col-12 searchBoxDiv">
+      <input type="search" #searchBox class="form-control mr-sm-2 searchBox" [(ngModel)]="filterText" name="searchBox" placeholder="Model, Package or IP Search" id="search-box" aria-label="Search" (input)="getAllPlatforms(searchBox.value)"/>
+      <div class="searchIcon"><i class="intelicon-search" title="search"></i></div>
+    </div>
+  </div>
+  <!--<div>
+    <input type="text" #name>
+  <br>
+    <input type="button" value="Call Function" (click)="firstFunction(name.value)">
+  </div>-->
+
+  <!--<nav id="hamnav">
+
+    <label for="hamburger">&#9776;</label>
+    <input type="checkbox" id="hamburger" (click)="toggleNavbar()" />
+    <div class="collapse navbar-collapse" [ngClass]="navbarOpen ? 'show-nav':'hide-nav'">
+
+    <ul class="nav nav-tabs topnav" id="hamitems" role="tablist">
+      <li class="nav-item" (click)="toggleNavbar()">
+        <a class="nav-link active" id="platform-tab" data-toggle="tab" href="#platform" role="tab" aria-controls="platform" aria-selected="true"  >Platforms</a>
+      </li>
+      <li class="nav-item" (click)="toggleNavbar()">
+        <a class="nav-link" id="ip-tab" data-toggle="tab" href="#ip" role="tab" aria-controls="ip" aria-selected="false">IP Blocks</a>
+      </li>
+      <li class="nav-item" (click)="toggleNavbar()">
+        <a class="nav-link" id="extension-tab" data-toggle="tab" href="#extension" role="tab" aria-controls="extension" aria-selected="false">Extension/Tools</a>
+      </li>
+      <li class="nav-item" (click)="toggleNavbar()">
+        <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Detailed Models</a>
+      </li>
+      <li class="nav-item" (click)="toggleNavbar()">
+        <a class="nav-link" id="interface-tab" data-toggle="tab" href="#interface" role="tab" aria-controls="interface" aria-selected="false">Interface and buses</a>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  <ul class="nav nav-tabs topnav" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="platform-tab" data-toggle="tab" href="#platform" role="tab" aria-controls="platform" aria-selected="true">Platforms</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="ip-tab" data-toggle="tab" href="#ip" role="tab" aria-controls="ip" aria-selected="false">IP Blocks</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="extension-tab" data-toggle="tab" href="#extension" role="tab" aria-controls="extension" aria-selected="false">Extension/Tools</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Detailed Models</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="interface-tab" data-toggle="tab" href="#interface" role="tab" aria-controls="interface" aria-selected="false">Interface and buses</a>
+    </li>
+  </ul>-->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="platform" role="tabpanel" aria-labelledby="platform-tab">
+      <div class="row row-sm-offset">
+        <div class="col-md-3 col-sm-12 col-lg-2 col-xl-2 multi-horizontal" data-for="">
+          <div class="content homePageContainer" id="filterDetail">
+            <h2 id="filterDetail">Search Filters</h2>
+
+            <!--<div class="row drpDownRow">
+              <div class="col-md-6 col-sm-6">
+            <label>Platform Name</label>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <select name="platformDrpDown" class="DrpDown" #platformDrpDown [(ngModel)]="platformDrp" (change)="getDrpDownValue()">
+              <option value="All" selected>All</option>
+              <option *ngFor="let platforms of initialData" [ngValue]="platforms">{{ platforms.platform }}</option>
+            </select>
+          </div>
+          </div>
+
+          <div class="row drpDownRow">
+            <div class="col-md-6 col-sm-6">
+          <label>Release</label>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <select name="releaseDrpDown" class="DrpDown" #releaseDrpDown [(ngModel)]="releaseDrp" (change)="getReleaseDrpDownValue(platformDrp)">
+            <option value="All" selected>All</option>
+            <option *ngFor="let releases of releaseNamesUnfiltered" [ngValue]="releases.releaseName">{{ releases.releaseName }}</option>
+          </select>
+        </div>
+        </div>
+
+      <div class="row drpDownRow">
+        <div class="col-md-6 col-sm-6">
+      <label>Simics Version</label>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <select name="platformDrpDown" class="DrpDown" #platformDrpDown (change)="getDrpDownValue()">
+        <option value="All" selected>All</option>
+      </select>
+    </div>
+    </div>-->
+
+        <!--Simics Versions-->
+        <div class="clear-selection" title="Click to Clear Selections" (click)="clearSelection()" *ngIf="selectedCount">Clear Selection</div>
+        <h4 class="modelTypesTitle">Platform Simics Versions</h4>
+        <div class="version-check custom-style-check" *ngFor="let version of simicsVersions; let i = index">
+          <input class="form-check-input versionCheckBox" [checked]=isSelectedVersion(version) (change)="onVersionChange(version.name)" #f1 type="checkbox" [value]="version" name="versiongroup" [(ngModel)]="version.selected" />
+          <label class="form-check-label modelTypeLabel" style="font-weight: normal">
+            {{version.name | titlecase }}
+        </label>
+        </div>
+
+    <!--Model Types with the Checkboxes-->
+    <h4 class="modelTypesTitle">Model Types</h4>
+    <div class="form-check custom-style-chek" *ngFor="let model of modelTypes; let i = index">
+      <input class="form-check-input modelTypeChk" [checked]=isSelected(model) (change)="onChange(model.name)" #f type="checkbox" [value]="model" name="modelgroup" [(ngModel)]="model.selected" />
+      <label class="form-check-label modelTypeLabel" style="font-weight: normal">
+          {{model.title}} ({{model.total}})
+      </label>
+    </div>
+    <!--<label class="animated slower fadeInDown" *ngFor="let model of modelTypes; let i = index">
+      <input type="checkbox" [name]="model.name" *ngIf="i === 0" checked (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!==model.name)" >
+      <input type="checkbox" [name]="model.name" *ngIf="i !== 0" (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!==model.name)" >
+       {{model.name}}
+    </label>-->
+  </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-lg-7 col-xl-8 multi-horizontal" data-for="">
+          <div class="content scrollbar mobile-content-panel homePageContainer">
+            <div class="row" *ngIf="initialData.length > 0">
+            <div class="col-md-4 col-lg-3 col-xl-2" *ngFor="let platforms of initialData; let i = index;">
+              <!--Platforms-->
+              <div *ngIf="platforms.type === 'platform'" name="platforms" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                <span class="thumbnailContentsImage" (click)="passName(platforms, 'platform', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                  <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-Platform-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                  <div class="caption">
+                    <p class="contentTitle">{{ platforms.platform }}</p>
+                  </div>
+                </span>
+              </div>
+              <!--IP Blocks-->
+              <div *ngIf="platforms.type === 'ip'" name="ip" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                <span class="thumbnailContentsImage" (click)="passName(platforms, 'ip', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                  <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-IP-block-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                  <div class="caption">
+                    <p class="contentTitle">{{ platforms.class_name }}</p>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="initialData.length === 0">
+            <p> Sorry, no records available</p>
+          </div>
+          </div>
+      </div>
+      <div id="overviewPanel" class="col-md-3 col-sm-12 col-lg-3 col-xl-2 multi-horizontal" data-for="">
+        <div #overviewDetail class="content homePageContainer scrollbar" id="overviewDetail">
+          <h2 id="platformDetailTitle">Overview</h2>
+          <ul *ngIf="type === 'platform'" class="platformReleseList">
+            <li *ngIf="showDetails">
+              <b>Platform Name:</b><p>{{platformName}}</p>
+              <b>Number of Version Available:</b><p>{{countOfReleses}}</p>
+              <b>Workweek:</b><p>{{workweek}}</p>
+              <b>Latest Release:</b><p>{{latestRelease}}</p>
+              <div class="clickBtn">
+                <button type="button" class="btn btn-info"><a class="clickMoreDetails" routerLink="platform/{{platformName}}/{{latestRelease}}" (click)="onSelect(platformName, latestRelease, '', 'platform')">Click for more details</a></button>
+              </div>
+            </li>
+          </ul>
+          <ul *ngIf="type === 'ip'" class="platformReleseList">
+            <li *ngIf="showDetails">
+              <b>Model Description Short:</b><p>{{modelDescShort}}</p>
+              <b>Number of Build Available:</b><p>{{countOfReleses}}</p>
+              <b>Latest Release (Build ID):</b><p>{{latestRelease}}</p>
+              <b>Latest Release (Build Time):</b><p>{{latestBuildTime}}</p>
+              <div id="clickIPDetailsBtn" class="clickBtn">
+                <button type="button" class="btn btn-info"><a class="clickMoreDetails" routerLink="ip/{{ipName}}/{{modelDescShort}}/{{latestBuildTime}}" (click)="onSelect(ipName, modelDescShort, latestBuildTime, 'ip')">Click for more details</a></button>
+              </div>
+            </li>
+          </ul>
+          <div #charts id="test">
+          </div>
+          <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="ip" role="tabpanel" aria-labelledby="ip-tab">
+      <div class="row row-sm-offset">
+        <div class="col-md-4 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">Filter Panel</div>
+        </div>
+        <div class="col-md-6 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">
+            <ul>
+              <li *ngFor="let platforms of filteredData">
+                {{ platforms.platform }}
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="col-md-2 col-sm-12 multi-horizontal" data-for="">
+        <div class="content scrollbar">Details Panel</div>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="extension" role="tabpanel" aria-labelledby="extension-tab">
+      <div class="row row-sm-offset">
+        <div class="col-md-2 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">Filter Panel</div>
+        </div>
+        <div class="col-md-8 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">
+            <ul>
+              <li *ngFor="let platforms of filteredData">
+                {{ platforms.platform }}
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="col-md-2 col-sm-12 multi-horizontal" data-for="">
+        <div class="content scrollbar">Details Panel</div>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+      <div class="row row-sm-offset">
+        <div class="col-md-5 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">Filter Panel</div>
+        </div>
+        <div class="col-md-5 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">
+            <ul>
+              <li *ngFor="let platforms of filteredData">
+                {{ platforms.platform }}
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="col-md-2 col-sm-12 multi-horizontal" data-for="">
+        <div class="content scrollbar">Details Panel</div>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="interface" role="tabpanel" aria-labelledby="interface-tab">
+      <div class="row row-sm-offset">
+        <div class="col-md-4 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">Filter Panel</div>
+        </div>
+        <div class="col-md-4 col-sm-12 multi-horizontal" data-for="">
+          <div class="content scrollbar">
+            <ul>
+              <li *ngFor="let platforms of filteredData">
+                {{ platforms.platform }}
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="col-md-4 col-sm-12 multi-horizontal" data-for="">
+        <div class="content scrollbar">Details Panel</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</form>

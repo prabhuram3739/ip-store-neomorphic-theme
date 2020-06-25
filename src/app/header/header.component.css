@@ -1,0 +1,21 @@
+.navbar {
+  margin-bottom: 0 !important;
+}
+
+.homeLink {
+  font-size: 22px;
+  font-weight: bold;
+  float: right;
+  color: #FFF;
+  margin-right: 5px;
+  cursor: pointer;
+  margin-top: 7px;
+}
+
+@media only screen and (max-width: 567px) {
+  .homeLink {
+    float: right;
+    font-size: 21px;
+    margin-top: -58px;
+  }
+}
