@@ -99,11 +99,12 @@ input[type="search"]::-webkit-search-cancel-button {
 .appIconClass {
   width: 10%;
   margin-top: -8px;
+  color: var(--on-background) !important;
 }
 
 header {
   /*background-color: #0071c5;*/
-  background-color: #FFFFFF !important;
+  background-color: var(--content-background) !important;
   height: 67px;
 }
 
@@ -223,7 +224,7 @@ li {
 
 .appHeading {
   margin: 0 auto;
-  color: #000 !important;
+  color: var(--on-background) !important;
   font-weight: bold;
   font-style: normal;
   font-size: 30px;
