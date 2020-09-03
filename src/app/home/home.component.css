@@ -7,7 +7,7 @@
 }
 
 .topSearchBox {
-  margin-top: 13px;
+  margin-top: 3px;
   border-radius: 3rem;
   box-shadow: 0.5rem 0.5rem 0.5rem var('--box-shadow-first-color'), -0.5rem -0.5rem 0.5rem  var('--box-shadow-second-color');
   transition: all 250ms ease-in-out;
@@ -36,7 +36,7 @@ input.searchBox, .form-control.searchBox {
   height: calc(2.5em + 0.75rem + 2px) !important;
   width: 100%;
   font-size: 1.5rem !important;
-  border-radius: 0 !important;
+  border-radius: 10px !important;
 }
 
 .clickMoreDetails {

@@ -6,16 +6,16 @@
   font-size: 22px;
   font-weight: bold;
   float: right;
-  color: #FFF;
+  color: #000;
   margin-right: 5px;
   cursor: pointer;
-  margin-top: 7px;
+  margin-top: 11px;
 }
 
 @media only screen and (max-width: 567px) {
   .homeLink {
     float: right;
     font-size: 21px;
-    margin-top: -58px;
+    margin-top: -42px;
   }
 }

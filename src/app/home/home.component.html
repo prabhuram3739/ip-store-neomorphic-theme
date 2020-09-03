@@ -2,8 +2,8 @@
 <form class="mbr-form model-store-form" data-form-title="Model store Form" id="model-store-form">
   <div class="row topSearchBox">
     <div class="col-12 searchBoxDiv">
-      <input type="search" #searchBox class="form-control mr-sm-2 searchBox" [(ngModel)]="filterText" name="searchBox" placeholder="Model, Package or IP Search" id="search-box" aria-label="Search" (input)="getAllPlatforms(searchBox.value)"/>
-      <div class="searchIcon"><i class="intelicon-search" title="search"></i></div>
+      <input type="search" #searchBox class="form-control mr-sm-2 searchBox" [(ngModel)]="filterText" name="searchBox" autocomplete="off" placeholder="IMSI Search" id="search-box" aria-label="Search" (input)="getAllPlatforms(searchBox.value)"/>
+      <div class="searchIcon"><i class="fa fa-search" title="search"></i></div>
     </div>
   </div>
   <!--<div>
@@ -98,22 +98,22 @@
 
         <!--Simics Versions-->
         <div class="clear-selection" title="Click to Clear Selections" (click)="clearSelection()" *ngIf="selectedCount">Clear Selection</div>
-        <h4 class="modelTypesTitle">Platform Simics Versions</h4>
+        <!--<h4 class="modelTypesTitle">Platform Simics Versions</h4>
         <div class="version-check custom-style-check" *ngFor="let version of simicsVersions; let i = index">
           <input class="form-check-input versionCheckBox" [checked]=isSelectedVersion(version) (change)="onVersionChange(version.name)" #f1 type="checkbox" [value]="version" name="versiongroup" [(ngModel)]="version.selected" />
           <label class="form-check-label modelTypeLabel" style="font-weight: normal">
             {{version.name | titlecase }}
         </label>
-        </div>
+        </div>-->
 
     <!--Model Types with the Checkboxes-->
-    <h4 class="modelTypesTitle">Model Types</h4>
+    <!--<h4 class="modelTypesTitle">Model Types</h4>
     <div class="form-check custom-style-chek" *ngFor="let model of modelTypes; let i = index">
       <input class="form-check-input modelTypeChk" [checked]=isSelected(model) (change)="onChange(model.name)" #f type="checkbox" [value]="model" name="modelgroup" [(ngModel)]="model.selected" />
       <label class="form-check-label modelTypeLabel" style="font-weight: normal">
           {{model.title}} ({{model.total}})
       </label>
-    </div>
+    </div>-->
     <!--<label class="animated slower fadeInDown" *ngFor="let model of modelTypes; let i = index">
       <input type="checkbox" [name]="model.name" *ngIf="i === 0" checked (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!==model.name)" >
       <input type="checkbox" [name]="model.name" *ngIf="i !== 0" (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!==model.name)" >
@@ -180,8 +180,8 @@
               </div>
             </li>
           </ul>
-          <div #charts id="test">
-          </div>
+          <!--<div #charts id="test">
+          </div>-->
           <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
             <div class="spinner-border text-primary" role="status">
               <span class="sr-only">Loading...</span>
@@ -191,7 +191,7 @@
       </div>
     </div>
     </div>
-    <div class="tab-pane fade" id="ip" role="tabpanel" aria-labelledby="ip-tab">
+    <!--<div class="tab-pane fade" id="ip" role="tabpanel" aria-labelledby="ip-tab">
       <div class="row row-sm-offset">
         <div class="col-md-4 col-sm-12 multi-horizontal" data-for="">
           <div class="content scrollbar">Filter Panel</div>
@@ -266,6 +266,6 @@
         <div class="content scrollbar">Details Panel</div>
       </div>
     </div>
-    </div>
+    </div>-->
   </div>
 </form>

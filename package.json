@@ -23,7 +23,6 @@
     "gulp": "^4.0.2",
     "highcharts": "^8.1.0",
     "highcharts-angular": "^2.4.0",
-    "it-mlaf-sass-bs4": "^7.0.4",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
@@ -52,5 +51,17 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhuram3739/ip-store-neomorphic-theme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabhuram3739/ip-store-neomorphic-theme/issues"
+  },
+  "homepage": "https://github.com/prabhuram3739/ip-store-neomorphic-theme#readme"
 }
