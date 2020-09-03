@@ -57,9 +57,9 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="platform" role="tabpanel" aria-labelledby="platform-tab">
       <div class="row row-sm-offset">
-        <div class="col-md-3 col-sm-12 col-lg-2 col-xl-2 multi-horizontal" data-for="">
+       <!-- <div class="col-md-3 col-sm-12 col-lg-2 col-xl-2 multi-horizontal" data-for="">
           <div class="content homePageContainer" id="filterDetail">
-            <h2 id="filterDetail">Search Filters</h2>
+            <h2 id="filterDetail">Search Filters</h2>-->
 
             <!--<div class="row drpDownRow">
               <div class="col-md-6 col-sm-6">
@@ -97,7 +97,7 @@
     </div>-->
 
         <!--Simics Versions-->
-        <div class="clear-selection" title="Click to Clear Selections" (click)="clearSelection()" *ngIf="selectedCount">Clear Selection</div>
+        <!--<div class="clear-selection" title="Click to Clear Selections" (click)="clearSelection()" *ngIf="selectedCount">Clear Selection</div>-->
         <!--<h4 class="modelTypesTitle">Platform Simics Versions</h4>
         <div class="version-check custom-style-check" *ngFor="let version of simicsVersions; let i = index">
           <input class="form-check-input versionCheckBox" [checked]=isSelectedVersion(version) (change)="onVersionChange(version.name)" #f1 type="checkbox" [value]="version" name="versiongroup" [(ngModel)]="version.selected" />
@@ -119,10 +119,11 @@
       <input type="checkbox" [name]="model.name" *ngIf="i !== 0" (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!==model.name)" >
        {{model.name}}
     </label>-->
-  </div>
-        </div>
-        <div class="col-md-6 col-sm-12 col-lg-7 col-xl-8 multi-horizontal" data-for="">
+  <!--</div>
+        </div>-->
+        <div class="col-md-9 col-sm-12 col-lg-8 col-xl-10 multi-horizontal" data-for="">
           <div class="content scrollbar mobile-content-panel homePageContainer">
+            <h2 id="platformDetailTitle">Main Content</h2>
             <div class="row" *ngIf="initialData.length > 0">
             <div class="col-md-4 col-lg-3 col-xl-2" *ngFor="let platforms of initialData; let i = index;">
               <!--Platforms-->

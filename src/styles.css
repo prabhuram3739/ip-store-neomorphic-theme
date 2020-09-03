@@ -459,8 +459,8 @@ input:checked + .slider:before {
   .detailPageContainer {
     min-height: 74vh;
   }
-  .multi-horizontal {
-    max-width: 33.33% !important;
+ .multi-horizontal {
+    max-width:50% !important;
   }
 
   .detail-multi-horizontal {

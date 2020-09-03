@@ -1,5 +1,5 @@
 {
-  "name": "ip-store",
+  "name": "diagnostic-tool",
   "version": "0.0.0",
   "scripts": {
     "json-server": "json-server --watch db.json"
