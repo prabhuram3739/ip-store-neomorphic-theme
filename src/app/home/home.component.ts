@@ -417,9 +417,9 @@ public getDetail($event: any, i: number, id) {
   } */
 
   // Close or show the navbar in the mobile view
-  /* public toggleNavbar() {
+  public toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
-  } */
+  }
 
   // Route to the platform
   public onSelect(param1: any, param2: any, param3: any, type: any) {

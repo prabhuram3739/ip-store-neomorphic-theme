@@ -11,49 +11,6 @@
   <br>
     <input type="button" value="Call Function" (click)="firstFunction(name.value)">
   </div>-->
-
-  <!--<nav id="hamnav">
-
-    <label for="hamburger">&#9776;</label>
-    <input type="checkbox" id="hamburger" (click)="toggleNavbar()" />
-    <div class="collapse navbar-collapse" [ngClass]="navbarOpen ? 'show-nav':'hide-nav'">
-
-    <ul class="nav nav-tabs topnav" id="hamitems" role="tablist">
-      <li class="nav-item" (click)="toggleNavbar()">
-        <a class="nav-link active" id="platform-tab" data-toggle="tab" href="#platform" role="tab" aria-controls="platform" aria-selected="true"  >Platforms</a>
-      </li>
-      <li class="nav-item" (click)="toggleNavbar()">
-        <a class="nav-link" id="ip-tab" data-toggle="tab" href="#ip" role="tab" aria-controls="ip" aria-selected="false">IP Blocks</a>
-      </li>
-      <li class="nav-item" (click)="toggleNavbar()">
-        <a class="nav-link" id="extension-tab" data-toggle="tab" href="#extension" role="tab" aria-controls="extension" aria-selected="false">Extension/Tools</a>
-      </li>
-      <li class="nav-item" (click)="toggleNavbar()">
-        <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Detailed Models</a>
-      </li>
-      <li class="nav-item" (click)="toggleNavbar()">
-        <a class="nav-link" id="interface-tab" data-toggle="tab" href="#interface" role="tab" aria-controls="interface" aria-selected="false">Interface and buses</a>
-      </li>
-    </ul>
-    </div>
-  </nav>
-  <ul class="nav nav-tabs topnav" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="platform-tab" data-toggle="tab" href="#platform" role="tab" aria-controls="platform" aria-selected="true">Platforms</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="ip-tab" data-toggle="tab" href="#ip" role="tab" aria-controls="ip" aria-selected="false">IP Blocks</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="extension-tab" data-toggle="tab" href="#extension" role="tab" aria-controls="extension" aria-selected="false">Extension/Tools</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Detailed Models</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="interface-tab" data-toggle="tab" href="#interface" role="tab" aria-controls="interface" aria-selected="false">Interface and buses</a>
-    </li>
-  </ul>-->
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="platform" role="tabpanel" aria-labelledby="platform-tab">
       <div class="row row-sm-offset">
@@ -123,42 +80,89 @@
         </div>-->
         <div class="col-md-7 col-sm-12 col-lg-7 col-xl-8 multi-horizontal" data-for="">
           <div class="content scrollbar mobile-content-panel homePageContainer">
-            <h2 id="platformDetailTitle">Main Content</h2>
-            <div class="row" *ngIf="initialData.length > 0">
-            <div class="col-md-4 col-lg-3 col-xl-2" *ngFor="let platforms of initialData; let i = index;">
-              <!--Platforms-->
-              <div *ngIf="platforms.type === 'platform'" name="platforms" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
-                <span class="thumbnailContentsImage" (click)="passName(platforms, 'platform', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
-                  <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-Platform-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
-                  <div class="caption">
-                    <p class="contentTitle">{{ platforms.platform }}</p>
+            <ul class="nav nav-pills mb-3 d-flex justify-content-between" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Packet Switch Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Circuit Switch Details</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+              </li>-->
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row" *ngIf="initialData.length > 0">
+                  <div class="col-md-4 col-lg-3 col-xl-2" *ngFor="let platforms of initialData; let i = index;">
+                    <!--Platforms-->
+                    <div *ngIf="platforms.type === 'platform'" name="platforms" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                      <span class="thumbnailContentsImage" (click)="passName(platforms, 'platform', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                        <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-Platform-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                        <div class="caption">
+                          <p class="contentTitle">{{ platforms.platform }}</p>
+                        </div>
+                      </span>
+                    </div>
+                    <!--IP Blocks-->
+                    <div *ngIf="platforms.type === 'ip'" name="ip" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                      <span class="thumbnailContentsImage" (click)="passName(platforms, 'ip', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                        <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-IP-block-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                        <div class="caption">
+                          <p class="contentTitle">{{ platforms.class_name }}</p>
+                        </div>
+                      </span>
+                    </div>
                   </div>
-                </span>
-              </div>
-              <!--IP Blocks-->
-              <div *ngIf="platforms.type === 'ip'" name="ip" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
-                <span class="thumbnailContentsImage" (click)="passName(platforms, 'ip', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
-                  <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-IP-block-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
-                  <div class="caption">
-                    <p class="contentTitle">{{ platforms.class_name }}</p>
+                  <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
                   </div>
-                </span>
+                </div>
+                <div *ngIf="initialData.length === 0">
+                  <p> Sorry, no Packet Switch Details records available</p>
+                </div>
               </div>
-            </div>
-            <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
-              <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
+              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row" *ngIf="initialData.length > 0">
+                  <div class="col-md-4 col-lg-3 col-xl-2" *ngFor="let platforms of initialData; let i = index;">
+                    <!--Platforms-->
+                    <div *ngIf="platforms.type === 'platform'" name="platforms" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                      <span class="thumbnailContentsImage" (click)="passName(platforms, 'platform', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                        <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-Platform-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                        <div class="caption">
+                          <p class="contentTitle">{{ platforms.platform }}</p>
+                        </div>
+                      </span>
+                    </div>
+                    <!--IP Blocks-->
+                    <div *ngIf="platforms.type === 'ip'" name="ip" (click)="getDetail(platforms.releaseName, i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                      <span class="thumbnailContentsImage" (click)="passName(platforms, 'ip', i, 'overviewDetail')" [ngClass]="{'highlight': selectedIndex === i}">
+                        <img src="https://gitlab.devtools.intel.com/simics-open/digital-library/-/raw/master/images/model-search/Model-IP-block-256.png" class="thumbnailImg rounded mx-auto d-block" alt="platforms">
+                        <div class="caption">
+                          <p class="contentTitle">{{ platforms.class_name }}</p>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center custom-loader" *ngIf="loader">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="initialData.length === 0">
+                  <p> Sorry, no Circuit Switch Details records available</p>
+                </div>
               </div>
+              <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>-->
             </div>
-          </div>
-          <div *ngIf="initialData.length === 0">
-            <p> Sorry, no records available</p>
-          </div>
           </div>
       </div>
       <div id="overviewPanel" class="col-md-5 col-sm-12 col-lg-5 col-xl-4 multi-horizontal" data-for="">
         <div #overviewDetail class="content homePageContainer scrollbar" id="overviewDetail">
-          <h2 id="platformDetailTitle">Overview</h2>
+          <h2 id="platformDetailTitle">General Information</h2>
           <ul *ngIf="type === 'platform'" class="platformReleseList">
             <li *ngIf="showDetails">
               <b>Platform Name:</b><p>{{platformName}}</p>
